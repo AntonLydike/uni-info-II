@@ -1,0 +1,197 @@
+#!/bin/bash
+
+set -eu
+
+# import settings
+. .settings
+
+# folder
+target_root=$1
+# output file name is path, but replace all slashes with dashes, add md ending
+output_file="${target_root/\//\-}.md"
+
+# clear file
+printf "" > $output_file
+
+# sync eclipse projects
+projectnum=$(basename $target_root)
+sourcepath="${JAVADIR}/${PROJECTNAME/\%n/$projectnum}/src/";
+
+if [ ! -d "$sourcepath" ]; then
+  echo "Didn't find an Eclipse project at \"${sourcepath}\" to import code from"
+else
+  echo "Syncing Eclipse Project:";
+  oldifs=$IFS;
+  IFS=$'\n';
+  for folder in `find "${sourcepath}" -name ${PACKAGEPREFIX}* -type d`; do
+    fname=$(basename "$folder")
+    # get number of project by replacing the prefix with nothing
+    fnum=${fname/$PACKAGEPREFIX/}
+    curr_dir=${target_root}/${fnum}
+
+    # create target dir if non-existent
+    if [ ! -d "$curr_dir" ]; then
+      mkdir "$curr_dir"
+    fi
+
+    printf "  - $fname: "
+
+    for file in `find "$folder" -type f -name *.java`; do
+      name=$(basename "$file")
+      # convert target name to lowercase if it's just one letter (plus .java ending)
+      if [ "${#name}" == 6 ]; then
+        name="${name,,}"
+      fi
+
+      cp "$file" "$curr_dir/${name}";
+      # print filename without .java ending
+      printf "${name/\.java/}"
+    done;
+    # newline
+    echo
+  done
+  IFS=$oldifs
+
+  # print newline
+  echo
+fi
+# end syncing eclipse
+
+# recursive function
+function process_dir {
+  # get target directory
+  root=$1
+  # get the depth, represented
+  depth=$2
+
+  # only print the folder name (in this case the assignment number)
+  printname="$(basename $root))"
+
+  # print "Übungsblatt #" instead of "#)" for the top level heading
+  if [ $depth == '#' ]; then
+    printname="Übungsblatt "
+    printname+=$(basename $root)
+  fi;
+
+  printf "$depth $printname\n\n" >> $output_file
+
+  for current in `ls -v $root`; do
+    # this is required, because the folder subroutine seems to overwrite it
+    root=$1
+    depth=$2
+
+    # d is the current file or folder
+    d="$root/$current"
+
+    if [ -d "$d" ]; then
+      # if it's a folder, scan it
+      printf "$d\n"
+      process_dir $d "${depth}#"
+    else
+
+      # get the filename without the ending
+      printname=$(basename ${d%.*})
+
+      if [ "$printname" == "test" ]; then
+        continue;
+      fi;
+
+      # only print c, h, png, jpg and md files
+      if [ "${d: -5}" == ".java" ]; then
+        if [[ "$printname" =~ ^test.* ]]; then
+          continue;
+        fi;
+
+        # if it's a file, record it's contents
+        printf "$d [code]\n"
+
+        printf "${depth}# $printname)\n\n${CODE_TAG}${LANGUAGE}\n" >> $output_file
+        cat $d >> $output_file
+        printf "\n$CODE_TAG\n\n" >> $output_file
+        printf "";
+      elif [ "${d: -4}" == ".png" ] || [ "${d: -4}" == ".jpg" ]; then
+
+        # exclude images that are included into other md files
+      	if [[ "$d" =~ \.include\. ]]; then
+          continue;
+        fi;
+
+      	# if it's an image, link to it
+        printf "$d [img]\n"
+
+        # insert image as markdown tag
+        printf "${depth}# $printname)\n\n![$d]($d)\n\n" >> $output_file
+
+      elif [ "${d: -3}" == ".md" ]; then
+        # if it's an image, link to it
+        printf "$d [md]\n"
+
+        # insert image as markdown tag
+        printf "${depth}# $printname)\n\n" >> $output_file
+        cat $d >> $output_file
+        printf "\n\n" >> $output_file
+
+      fi;
+    fi;
+  done;
+}
+
+if [[ $target_root =~ \.md$ ]]; then
+  # if a markdown file is specified, just convert it
+
+  echo "converting markdown file $target_root";
+
+  output_file="$target_root";
+
+else
+  # otherwise create a new one
+  process_dir $target_root "#"
+
+fi;
+
+if command -v grip > /dev/null; then
+  echo "rendering markdown";
+
+  html_output_file="$(basename $output_file .md).html"
+  grip $output_file --export $html_output_file > /dev/null 2> /dev/null
+
+  # append code to make page printer-friendly
+  cat printify.html >> $html_output_file
+
+  filepath="file://$(realpath $html_output_file)"
+  pdf_output_file=$(basename $output_file .md)-no-cover.pdf
+
+  if command -v chromium-browser > /dev/null; then
+    echo "Printing pdf using chromium-browser...";
+    chromium-browser --headless --print-to-pdf="$pdf_output_file" $filepath > /dev/null 2> /dev/null
+  elif command -v google-chrome > /dev/null; then
+    echo "Printing pdf using google-chrome...";
+    google-chrome --headless --print-to-pdf="$pdf_output_file" $filepath > /dev/null 2> /dev/null
+  else
+    echo "Sadly neither chrome nor chromium are presesent, and I haven't implemented anything else to convert the html to pdf."
+    exit 0;
+  fi;
+
+  # add cover to pdf and save as a cover version
+  pdf_final_output="${PDFNAME/\%n/$projectnum}.pdf"
+  pdfunite turn-in-cover.pdf "$pdf_output_file" "$pdf_final_output"
+
+  if [ $REMOVE_MD == true ]; then
+    rm $output_file
+    echo "cleaned up md file"
+  fi
+
+  if [ $REMOVE_HTML == true ]; then
+    # keep html as pdf printing leaves a footnote
+    rm $html_output_file
+    echo "cleaned up html file"
+  fi
+
+  if [ $COPY_PDF_IN_PROJECT == true ]; then
+    cp "$pdf_final_output" "$target_root/"
+  fi
+
+  rm $pdf_output_file
+else
+  echo "grip not found! - please install grip!"
+fi;
