@@ -22,7 +22,7 @@ printf "" > $output_file
 projectnum=$(basename $target_root)
 sourcepath="${JAVADIR}/${PROJECTNAME/\%n/$projectnum}/src/";
 
-if [ ! -d "$sourcepath" ] || [ "$2" == "--no-import" ]; then
+if [ ! -d "$sourcepath" ]; then
   echo "Didn't find an Eclipse project at \"${sourcepath}\" to import code from"
 else
   echo "Syncing Eclipse Project:";
