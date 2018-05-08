@@ -3,7 +3,12 @@
 set -eu
 
 # import settings
-. .settings
+if [ ! -f ".settings" ]; then 
+	. .settings-default
+	echo "Loaded default settings, configure your own inside .settings (copy the defaults from .settings tho)";
+else
+	. .settings
+fi;
 
 # folder
 target_root=$1
@@ -45,7 +50,7 @@ else
 
       cp "$file" "$curr_dir/${name}";
       # print filename without .java ending
-      printf "${name/\.java/}"
+      printf "${name/\.java/} "
     done;
     # newline
     echo
