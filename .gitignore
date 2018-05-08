@@ -1,3 +1,4 @@
 # aufgabenblätter ignorieren
 assignments/blatt*
-/.settings
+# local settings
+.settings

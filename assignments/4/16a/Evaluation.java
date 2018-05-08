@@ -9,7 +9,11 @@ public class Evaluation {
 	private Date date;
 	private Student examinee;
 	
-	public Evaluation () {
-		this.examinee = null;
+	public Evaluation (Student s) {
+		setExaminee(s);
+	}
+	
+	public void setExaminee(Student s) {
+		examinee = s;
 	}
 }
