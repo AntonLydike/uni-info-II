@@ -97,7 +97,7 @@ function process_dir {
       # get the filename without the ending
       printname=$(basename ${d%.*})
 
-      if [ "$printname" == "test" ]; then
+      if [ "$printname" == "test" ] || [ "$printname" == "Test__" ]; then
         continue;
       fi;
 

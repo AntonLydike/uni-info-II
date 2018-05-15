@@ -2,3 +2,5 @@
 assignments/blatt*
 # local settings
 .settings
+/.settings
+*.settings
