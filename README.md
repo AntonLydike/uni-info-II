@@ -13,8 +13,8 @@ Lösungen der Übungsaufgaben der Vorlesung Informatik II an der Uni Augsburg im
 Extrapunkte (BP / Vorrechnen):
 
  - Tarik: 1
- - Dominic: 1
- - Anton: 1
+ - Dominic: 2
+ - Anton: 2
 
 
 **Gesamt: 15/16**
