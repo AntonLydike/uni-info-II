@@ -32,7 +32,13 @@ public class B extends Frame implements ItemListener {
 		t.setVisible(false);
 		
 		this.pack();
-		this.setVisible(true);		
+		this.setVisible(true);
+
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
+				dispose();
+			}
+		});		
 	}
 	
 	public void itemStateChanged (ItemEvent e) {
@@ -41,6 +47,6 @@ public class B extends Frame implements ItemListener {
 	}
 	
 	public static void main(String[] args) {
-		B b = new B();
+		new B();
 	}
 }

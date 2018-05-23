@@ -26,6 +26,6 @@ public class A extends Frame {
 	}
 
 	public static void main(String[] args) {
-		A a = new A();
+		new A();
 	}
 }

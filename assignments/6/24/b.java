@@ -23,10 +23,12 @@ public class B extends Frame implements ActionListener {
 		this.setTitle(String.valueOf(size));
 		this.setSize(new Dimension((int) size, (int) size));
 		this.setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		B b = new B();
+
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
+				dispose();
+			}
+		});
 	}
 
 	@Override
@@ -38,8 +40,10 @@ public class B extends Frame implements ActionListener {
 		}
 		
 		this.setSize(new Dimension((int) size, (int) size));
-		this.setTitle(String.valueOf(size));
+		this.setTitle(String.valueOf((int) size));
 	}
-
 	
+	public static void main(String[] args) {
+		new B();
+	}
 }

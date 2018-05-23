@@ -13,10 +13,6 @@ public class A extends Frame implements KeyListener {
 		this.addKeyListener(this);
 	}
 	
-	public static void main(String[] args) {
-		A a = new A();
-	}
-	
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyChar() == 'x') {
 			this.dispose();
@@ -28,4 +24,8 @@ public class A extends Frame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {}
+	
+	public static void main(String[] args) {
+		new A();
+	}
 }

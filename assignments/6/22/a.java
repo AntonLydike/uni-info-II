@@ -1,6 +1,7 @@
 package aufgabe22;
 
 import java.awt.*;
+import java.awt.event.*;
 
 public class A extends Frame {
 	private static final long serialVersionUID = 1L;
@@ -26,9 +27,15 @@ public class A extends Frame {
 		this.setLayout(grid);
 		this.pack();
 		this.setVisible(true);
+
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
+				dispose();
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
-		A a = new A();
+		new A();
 	}
 }
