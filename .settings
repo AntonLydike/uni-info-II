@@ -1,9 +1,0 @@
-PDFNAME="Übungsblatt %n"
-COPY_PDF_IN_PROJECT=true
-REMOVE_MD=true
-REMOVE_HTML=false
-JAVADIR="/home/anton/workspace/"
-PROJECTNAME="T6 Blatt %n"
-PACKAGEPREFIX="aufgabe"
-CODE_TAG="\`\`\`\`"
-LANGUAGE="java"
