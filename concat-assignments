@@ -3,9 +3,9 @@
 set -eu
 
 # import settings
-if [ ! -f ".settings" ]; then 
+if [ ! -f ".settings" ]; then
 	. .settings-default
-	echo "Loaded default settings, configure your own inside .settings (copy the defaults from .settings tho)";
+	echo "Loaded default settings, configure your own inside .settings (copy the defaults from .settings-default tho)";
 else
 	. .settings
 fi;
