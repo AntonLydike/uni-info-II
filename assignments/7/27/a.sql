@@ -1,11 +1,13 @@
 CREATE TABLE Point (
   x FLOAT NOT NULL,
-  y FLOAT NOT NULL
-)
+  y FLOAT NOT NULL,
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
 
 CREATE TABLE GeometricObject (
-  position Point NOT NULL,
-  type ENUM('circle', 'rectangle') NOT NULL
+  position INTEGER NOT NULL,
+  type ENUM('circle', 'rectangle') NOT NULL,
   -- circle
   radius FLOAT,
   check (
@@ -19,12 +21,12 @@ CREATE TABLE GeometricObject (
   check (
     type = 'rectangle' AND
     length IS NOT NULL AND
-    width IS NOT NULL
+    width IS NOT NULL AND
     length > 0 AND
     width > 0
   ),
-)
-
+  FOREIGN KEY (position) REFERENCES Point(id)
+);
 
 -- PRO: Erweitern der Oberklasse GeometricObject ist einfach
 
