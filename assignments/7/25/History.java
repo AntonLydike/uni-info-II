@@ -9,11 +9,11 @@ public class History extends Dialog {
 	public History (Frame f, java.util.ArrayList<Double> list) {
 		super(f, "History", true);
 		
-		GridLayout gl = new GridLayout(list.size(), 1);
-		this.setLayout(gl);
+		FlowLayout fl = new FlowLayout();
+		List l = new List(10);
 		
 		for (int i = list.size(); i > 0; i--) {
-			this.add(new Label(String.valueOf(list.get(i-1))));
+			l.add(String.valueOf(list.get(i-1)));
 		}
 
 		this.addWindowListener(new WindowAdapter() {
@@ -21,7 +21,9 @@ public class History extends Dialog {
 				dispose();
 			}
 		});
-		
+
+		this.setLayout(fl);
+		this.add(l);
 		this.pack();
 		this.setVisible(true);
 	}

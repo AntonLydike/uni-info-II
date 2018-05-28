@@ -42,7 +42,6 @@ public class Window extends Frame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(this.btn_rn)) {
 			generateRandom();
-			System.out.println("Generating random");
 		} else if (e.getSource().equals(this.btn_hs)) {
 			showHistory();
 		}
