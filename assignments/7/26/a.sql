@@ -1,0 +1,19 @@
+CREATE TABLE Patient (
+  id INTEGER NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE Arzt (
+  id INTEGER NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE Behandlung (
+  id INTEGER NOT NULL,
+  diagnose VARCHAR(200) NOT NULL,
+  arztID INTEGER NOT NULL,
+  patientID INTEGER NOT NULL,
+  FOREIGN KEY (arztID) REFERENCES Arzt(id),
+  FOREIGN KEY (patientID) REFERENCES Patient(id),
+  PRIMARY KEY (id)
+);
