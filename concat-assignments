@@ -97,16 +97,12 @@ function process_dir {
       # get the filename without the ending
       printname=$(basename ${d%.*})
 
-      if [ "$printname" == "test" ] || [ "$printname" == "Test__" ]; then
+      if [[ "$printname" =~ ^test.* ]] || [ "$printname" == "Test__" ]; then
         continue;
       fi;
 
       # only print c, h, png, jpg and md files
       if [ "${d: -5}" == ".java" ]; then
-        if [[ "$printname" =~ ^test.* ]]; then
-          continue;
-        fi;
-
         # if it's a file, record it's contents
         printf "$d [code]\n"
 
@@ -126,6 +122,15 @@ function process_dir {
 
         # insert image as markdown tag
         printf "${depth}# $printname)\n\n![$d]($d)\n\n" >> $output_file
+
+      elif [ "${d: -4}" == ".sql" ]; then
+
+        printf "$d [SQL]\n"
+
+        printf "${depth}# $printname)\n\n${CODE_TAG}SQL\n" >> $output_file
+        cat $d >> $output_file
+        printf "\n$CODE_TAG\n\n" >> $output_file
+        printf "";
 
       elif [ "${d: -3}" == ".md" ]; then
         # if it's an image, link to it
