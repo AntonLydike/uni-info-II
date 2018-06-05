@@ -42,6 +42,7 @@ public class Window extends Frame implements ActionListener {
 
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
+                container.close();
                 dispose();
             }
         });
