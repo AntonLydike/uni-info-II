@@ -11,29 +11,29 @@ public class TemporaryEmployee extends Employee {
 
     public TemporaryEmployee(int number, String name, LocalDate beginOfContract,
                              LocalDate endOfContract) throws DataFormatException {
-	super(number, name, beginOfContract);
-	setEndOfContract(endOfContract);
+        super(number, name, beginOfContract);
+        setEndOfContract(endOfContract);
     }
 
     private boolean checkEndOfContract(LocalDate endOfContract) {
-	return this.getBeginOfContract().isBefore(endOfContract);
+        return this.getBeginOfContract().isBefore(endOfContract);
     }
 
     private void setEndOfContract(LocalDate endOfContract)
-	    throws DataFormatException {
-	if (!checkEndOfContract(endOfContract))
-	    throw new DataFormatException(
-		    "Objekt Zeitangestellter: Ungueltiges Vertragsende");
-	this.endOfContract = endOfContract;
+            throws DataFormatException {
+        if (!checkEndOfContract(endOfContract))
+            throw new DataFormatException(
+                    "Objekt Zeitangestellter: Ungueltiges Vertragsende");
+        this.endOfContract = endOfContract;
     }
 
     public LocalDate getEndOfContract() {
-	return endOfContract;
+        return endOfContract;
     }
 
     @Override
     public String toString() {
-	return super.toString() + ", bis " + getEndOfContract();
+        return super.toString() + ", bis " + getEndOfContract();
     }
 
 }

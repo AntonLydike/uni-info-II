@@ -35,7 +35,7 @@ public class Window extends Frame implements ActionListener {
         this.add(btn_load);
 
         anzeige = new Label("Programmfenster");
-        this.add(anzeige,BorderLayout.CENTER);
+        this.add(anzeige, BorderLayout.CENTER);
         anzeige.setText("Bitte logge dich zuerst ein.");
 
         this.setLayout(fl);
@@ -66,7 +66,7 @@ public class Window extends Frame implements ActionListener {
 
     private void showLoginModal() {
         credentials = this.loginModal.showDialog();
-        if(credentials != null) {
+        if (credentials != null) {
             try {
                 container = EmployeeContainer.instance(credentials.getUsername(), credentials.getPassword());
                 anzeige.setText("Login erfolgreich.");

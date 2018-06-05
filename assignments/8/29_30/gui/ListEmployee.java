@@ -19,60 +19,60 @@ public class ListEmployee extends Dialog implements ActionListener, Observer {
 
     public ListEmployee(Window f, EmployeeContainer container) throws SQLException {
 
-	super(f, "Alle Angestellten anzeigen", false);
+        super(f, "Alle Angestellten anzeigen", false);
 
-	this.setLayout(new GridLayout(0, 1));
-	this.container = container;
+        this.setLayout(new GridLayout(0, 1));
+        this.container = container;
 
-	Panel unten = new Panel();
-	add(unten);
-	unten.setLayout(new BorderLayout());
+        Panel unten = new Panel();
+        add(unten);
+        unten.setLayout(new BorderLayout());
 
-	Label alleAngestelltenLabel = new Label("Alle Angestellten: ");
-	unten.add(alleAngestelltenLabel, BorderLayout.NORTH);
+        Label alleAngestelltenLabel = new Label("Alle Angestellten: ");
+        unten.add(alleAngestelltenLabel, BorderLayout.NORTH);
 
-	allEmployeesList = new List();
-	unten.add(allEmployeesList, BorderLayout.CENTER);
-	allEmployeesList.setEnabled(true);
+        allEmployeesList = new List();
+        unten.add(allEmployeesList, BorderLayout.CENTER);
+        allEmployeesList.setEnabled(true);
 
-	Panel s = new Panel();
-	unten.add(s, BorderLayout.SOUTH);
+        Panel s = new Panel();
+        unten.add(s, BorderLayout.SOUTH);
 
-	this.addWindowListener(new WindowAdapter() {
-	    public void windowClosing(WindowEvent e) {
-		dispose();
-	    }
-	});
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
 
-	setLocation(f.getLocation().x + 200, f.getLocation().y + 200);
+        setLocation(f.getLocation().x + 200, f.getLocation().y + 200);
 
 
-	container.addObserver(this);
-	update(container, null);
-	container.load();
+        container.addObserver(this);
+        update(container, null);
+        container.load();
 
-	pack();
-	setVisible(true);
+        pack();
+        setVisible(true);
     }
 
     public void update(Observable o, Object arg) {
-	allEmployeesList.removeAll();
-	;
-	for (Employee a : container) {
-	    allEmployeesList.add(a.toString());
-	}
+        allEmployeesList.removeAll();
+
+        for (Employee a : container) {
+            allEmployeesList.add(a.toString());
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
-	if (e.getActionCommand().equals("Angestellten löschen")) {
-	    // onDelete();
-	} else if (e.getActionCommand().equals("Abbrechen")) {
-	    onCancel();
-	}
+        if (e.getActionCommand().equals("Angestellten löschen")) {
+            // onDelete();
+        } else if (e.getActionCommand().equals("Abbrechen")) {
+            onCancel();
+        }
     }
 
     private void onCancel() {
-		dispose();
+        dispose();
     }
 
 }
