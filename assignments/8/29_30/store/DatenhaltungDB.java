@@ -64,6 +64,8 @@ public class DatenhaltungDB {
                     a = new Employee(employees.getInt(1),
                             employees.getString(2), beginDate);
                 } else {
+
+
                     if (employees.getBoolean(5) == true) {
                         LocalDate beginDate = LocalDate.parse(employees
                                 .getString(3), DATE_FORMAT);

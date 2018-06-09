@@ -64,6 +64,8 @@ public class Window extends Frame implements ActionListener {
         }
     }
 
+
+
     private void showLoginModal() {
         credentials = this.loginModal.showDialog();
         if (credentials != null) {

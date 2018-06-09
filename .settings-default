@@ -5,5 +5,5 @@ REMOVE_HTML=false
 JAVADIR="/home/username/workspace/"
 PROJECTNAME="T6 Blatt %n"
 PACKAGEPREFIX="aufgabe"
-CODE_TAG="\`\`\`\`"
+CODE_TAG="\`\`\"
 LANGUAGE="java"
