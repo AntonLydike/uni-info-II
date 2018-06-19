@@ -1,0 +1,26 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Buch">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="kunde" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="isbn"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="kunde">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nummer" type="xs:int" />
+                <xs:element name="buecher">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Buch" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

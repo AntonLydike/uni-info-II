@@ -1,0 +1,49 @@
+<!-- zu a) -->
+
+<Employee>
+    <language>de</language>
+</Employee>
+
+<Employee>
+    <language>de</language>
+    <language>en</language>
+    <language>it</language>
+</Employee>
+
+
+<!-- zu b) -->
+
+<Buch isbn="978-3-86680-192-9" jahr="1992">
+    <autor>Stephen King</autor>
+</Buch>
+
+<Buch isbn="123-4-56789-098-7" jahr="2051">
+    <autor>Stephen King</autor>
+    <autor>Bertolt Brecht</autor>
+    <autor>Hermann Hesse</autor>
+</Buch>
+
+<!-- zu c) -->
+<!-- Problem: Buch verweist auf Kunden und die Kunde selber wieder auf die Buecher: führt zur Endlosschleife -->
+
+<Buch isbn="978-3-86680-192-9">
+    <Kunde>
+        <nummer>123</nummer>
+        <buecher>
+            <Buch isbn="978-3-86680-192-9"/>
+            <Buch isbn="123-4-56789-098-7"/>
+        </buecher>
+    </Kunde>
+</Buch>
+
+<Buch isbn="123-3-86680-192-9">
+<Kunde>
+    <nummer>312</nummer>
+    <buecher>
+        <Buch isbn="312-3-86680-192-9"/>
+        <Buch isbn="331-4-56789-333-1"/>
+        <Buch isbn="999-4-56789-111-2"/>
+        <Buch isbn="444-4-56789-222-3"/>
+    </buecher>
+</Kunde>
+</Buch>
