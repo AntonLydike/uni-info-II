@@ -5,10 +5,10 @@ Lösungen der Übungsaufgaben der Vorlesung Informatik II an der Uni Augsburg im
 
 |Übungsblatt: |1  |2  |3  |4  |5  |6  |7  |8  |9  |10 |
 |-------------|---|---|---|---|---|---|---|---|---|---|
-|A1           | 1 | 1 | 1 | 1 | 1 | 1 |1  |2  |   |   |
-|A2           |0,5| 1 | 1 | 1 | 1 | 1 |1  |1  |   |   |
-|A3           | 1 | 1 |0,5| 1 | 1 | 1 |1  |0,5|   |   |
-|A4           | 1 | 1 | 1 | 1 | 1 | 1 |1  |-  |   |   |
+|A1           | 1 | 1 | 1 | 1 | 1 | 1 |1  |2  | 1 |   |
+|A2           |0,5| 1 | 1 | 1 | 1 | 1 |1  |1  |  1|   |
+|A3           | 1 | 1 |0,5| 1 | 1 | 1 |1  |0,5| 1 |   |
+|A4           | 1 | 1 | 1 | 1 | 1 | 1 |1  |-  |0,5|   |
 
 Extrapunkte (BP / Vorrechnen):
 
@@ -17,7 +17,7 @@ Extrapunkte (BP / Vorrechnen):
  - Anton: 2
 
 
-**Gesamt: 30,5/32**
+**Gesamt: 34/36**
 
 
 ## concat-assignments script
