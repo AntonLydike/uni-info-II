@@ -132,6 +132,15 @@ function process_dir {
         printf "\n$CODE_TAG\n\n" >> $output_file
         printf "";
 
+      elif [ "${d: -4}" == ".xml" ]; then
+
+        printf "$d [XML]\n"
+
+        printf "${depth}# $printname)\n\n${CODE_TAG}XML\n" >> $output_file
+        cat $d >> $output_file
+        printf "\n$CODE_TAG\n\n" >> $output_file
+        printf "";
+
       elif [ "${d: -3}" == ".md" ]; then
         # if it's an image, link to it
         printf "$d [md]\n"
