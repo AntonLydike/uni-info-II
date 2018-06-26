@@ -14,7 +14,7 @@ Extrapunkte (BP / Vorrechnen):
 
  - Tarik: 1
  - Dominic: 2
- - Anton: 2
+ - Anton: 3
 
 
 **Gesamt: 36/40**
