@@ -8,7 +8,6 @@ import java.awt.event.*;
 public class MausFrame extends Frame implements MouseListener {
 
     MausCanvas canvas;
-
     private int clickCounter = 0;
     private Label clickLabel = new Label();
 
@@ -29,7 +28,6 @@ public class MausFrame extends Frame implements MouseListener {
         add(clickLabel);
 
         setSize(100, 100);
-
 
         setVisible(true);
         clickLabel.setVisible(true);

@@ -65,6 +65,8 @@ public class MausFrame extends Frame implements MouseListener {
         clickLabel.revalidate();
 
         clickLabel.setLocation(e.getX(), e.getY());
+
+
     }
 
     @Override
