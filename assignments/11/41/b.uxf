@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>380</y>
+      <w>390</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>+java.io.FileOutputStream
+--
+FileOutputStream(file:File) { FileNotFoundException }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>300</y>
+      <w>430</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>+ DatenhaltungSer
+--
+-filename: String
+--
++DatenhaltungSer(filename:String) { LoadSaveException }
++load(out con:ArtikelContainer) { LoadSaveException }
++save(in con:ArtikelContainer) { LoadSaveException }
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>140</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>+ ArtikelContainer
+--
++linkBuch(b: Buch)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>200</y>
+      <w>230</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>+IOExcpetion</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>140</y>
+      <w>230</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>+Exception</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>160</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>180</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+-store
+m1=[0..1]</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>390</y>
+      <w>70</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+-writer
+m1=[0..1]</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>390</y>
+      <w>80</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+-reader
+m1=[0..1]</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>340</y>
+      <w>260</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+-outStream
+m1=[0..1]</panel_attributes>
+    <additional_attributes>240.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>310</y>
+      <w>380</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>+java.io.FileInputStream
+--
+FileInputStream(file:File) { FileNotFoundException }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>320</y>
+      <w>260</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+-inStream
+m1=[0..1]</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>500</y>
+      <w>360</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>+java.io.ObjectOutputStream
+--
++ObjectOutputStream(outStream: OutputStream)
+    {IOException}
++writeObject(): Object { IOException }
++close()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>630</y>
+      <w>330</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>+java.io.ObjectInputStream
+--
++ObjectInputStream(inStream: InputStream)
+    { IOException }
++readObject(): Object
+    { IOException | ClassNotFoundException }
++close()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
