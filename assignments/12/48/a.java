@@ -1,11 +1,10 @@
 package blatt12;
 
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MausFrame extends JFrame implements MouseListener, MouseMotionListener {
+public class MausFrame extends Frame implements MouseListener, MouseMotionListener {
 
     int width = 50;
     int height = 50;
